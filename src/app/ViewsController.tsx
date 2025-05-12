@@ -3,26 +3,21 @@ import {MenuItemDetails} from "./menu/menu-item-details/MenuItemDetails";
 import {Menu} from "./menu/Menu";
 import {notifyViewEvent, setMenuItems} from "../slices/statisticsSlice";
 import {useAppDispatch} from "../hooks/hooks.ts";
+import {useEffect} from "react";
 
 export const ViewsController = () => {
     const dispatch = useAppDispatch();
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
-    const {menuItems} = useSelector<any, any>(state => state.statistics.menuItemViews);
+    const {menuItem} = useSelector<any, any>(s => s.dishesCategories.view);
+    const {menuItems} = useSelector<any, any>(s => s.statistics.menuItemViews);
 
-    const renderViews = () => {
-        if (menuItem) {
-            if (!menuItems.includes(menuItem.id)) {
-                dispatch(setMenuItems([...menuItems, menuItem.id]));
-                dispatch(notifyViewEvent({menuItemId: menuItem.id}));
-            }
-            return (<MenuItemDetails/>);
+    useEffect(() => {
+        if (!menuItem) return;
+
+        if (!menuItems.includes(menuItem.id)) {
+            dispatch(setMenuItems([...menuItems, menuItem.id]));
+            dispatch(notifyViewEvent({menuItemId: menuItem.id}));
         }
-        return (<Menu/>);
-    }
+    }, [dispatch, menuItem, menuItems]);
 
-    return (
-        <>
-            {renderViews()}
-        </>
-    );
-}
+    return menuItem ? <MenuItemDetails/> : <Menu/>;
+};
