@@ -37,8 +37,8 @@ export const CategoriesNavigation = () => {
     }, [dispatch, chosenCategory]);
 
     useEffect(() => {
-        fetchCategories();
-    }, [fetchCategories]);
+        if(categories.length === 0) fetchCategories();
+    }, [categories, fetchCategories]);
 
     const handleSearchSubmit = async (e: any) => {
         e.preventDefault();
