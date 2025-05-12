@@ -1,28 +1,25 @@
-import {Banner} from "./menu-item-details/Banner.js";
-import {imagesPath} from "../../apiData";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import type {MenuItem} from "../../interfaces/MenuItem.ts";
+import {s3BucketUrl} from "../../apiData.ts";
 
 type MenuItemImageType = {
     menuItem: MenuItem;
+    hasImage: boolean | null;
 }
 
-export const MenuItemImage = ({menuItem}: MenuItemImageType) => {
-    const imgName = menuItem.imageName;
-
-    if (!imgName) {
+export const MenuItemImage = ({menuItem, hasImage}: MenuItemImageType) => {
+    
+    if (!hasImage) {
         return (<></>);
     }
 
     return (
-        <div className={`menu-item-image-container`}>
-            <Banner menuItem={menuItem}/>
-            <LazyLoadImage
-                className={'menu-item-image'}
-                alt="img"
-                src={imagesPath + imgName}
-                placeholderSrc={`/theme/images/placeholder-image.png`}
+        <div className={`menu-item-image-container ${!hasImage ? 'no-photo' : ''}`}>
+            <LazyLoadImage alt={'Menu position image'}
+                           className={'menu-item-image'}
+                           src={`${s3BucketUrl}/${menuItem.id}`}
+                           placeholderSrc="/theme/images/placeholder-image.png"
             />
         </div>
     );
-}
+};
