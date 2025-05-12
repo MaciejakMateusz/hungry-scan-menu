@@ -75,11 +75,7 @@ export const filter = createAsyncThunk<void, any>(
             return rejectWithValue(errorData);
         }
 
-        try {
-            return await response.json().catch(_ => {});
-        } catch (error: any) {
-            return {};
-        }
+        return await response.json().catch(() => {});
     }
 );
 
@@ -126,11 +122,7 @@ export const getCategories = createAsyncThunk(
             return rejectWithValue(errorData);
         }
 
-        try {
-            return await response.json();
-        } catch (error) {
-            return {};
-        }
+        return await response.json().catch(() => {});
     }
 );
 
@@ -169,8 +161,7 @@ export const dishesCategoriesSlice = createSlice(
             filterActive: false,
             filterValue: '',
             filteredItems: null,
-            filterExpanded: false,
-            onboardingActive: true
+            filterExpanded: false
         },
         reducers: {
             setCategory: (state, action) => {
@@ -200,10 +191,7 @@ export const dishesCategoriesSlice = createSlice(
                 state.filteredItems = null;
                 state.filterValue = '';
                 state.filterActive = false;
-            },
-            setOnboardingActive: (state, action) => {
-                state.onboardingActive = action.payload;
-            },
+            }
         }
     });
 
@@ -215,8 +203,7 @@ export const {
     setFilterActive,
     setFilterValue,
     setFilteredItems,
-    setFilterExpanded,
-    setOnboardingActive
+    setFilterExpanded
 } = dishesCategoriesSlice.actions;
 
 const dishesCategoriesReducer = combineReducers({
