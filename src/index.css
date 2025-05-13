@@ -54,17 +54,19 @@
   --Orange-700: #CB8B02;
   --Orange-800: #A67203;
   --Orange-900: #7A5400;
+
+  --Font-Family-Main: "Lexend";
 }
 /*END OF VARS*/
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "Lexend", sans-serif;
+  font-family: var(--Font-Family-Main), sans-serif;
   font-style: normal;
   font-size: 0.9rem;
   font-weight: 400;
-  background: #FCFCFC;
+  background: var(--Basic-200);
   position: relative;
 }
 
@@ -105,65 +107,18 @@ input[type="password"]:active {
   }
 }
 
-/* ONBOARDING */
-.onboarding-container {
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
-  max-width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-.onboarding-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.onboarding-lang-switcher {
-  position: absolute;
-  bottom: 170px;
-  color: #FFF;
-  border-radius: 100px;
-  background: #222;
-  padding: 13px 27px 13px 27px;
-}
-
-.onboarding-button {
-  position: absolute;
-  bottom: 122px;
-  color: #FFF;
-  border-radius: 100px;
-  background: #129E4D;
-  padding: 13px 27px 13px 27px;
-  cursor: pointer;
-}
-/* END OF ONBOARDING */
-
 .localization-container {
   max-width: 100%;
-  height: 40px;
-  background: #FFF;
-  border-radius: 100px;
+  background: var(--Basic-100);
+  border-radius: 4px;
   margin: 5px 15px 0 15px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
-  padding-left: 15px;
-
-}
-
-.localization-text {
+  padding: 8px;
   font-weight: 500;
+  font-size: 14px;
 }
 
 .welcome-text-container {
@@ -174,6 +129,73 @@ input[type="password"]:active {
   margin-left: 30px;
   display: flex;
   align-items: center;
+}
+
+.flex-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-mobile-wrapper {
+  display: flex;
+}
+
+.lng-display {
+  line-height: 20px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.flag-icon {
+  box-shadow:
+          0 11px 9px 0 rgba(99, 99, 99, 0.00),
+          0 7px 8px 0 rgba(99, 99, 99, 0.01),
+          0 4px 7px 0 rgba(99, 99, 99, 0.05),
+          0 2px 5px 0 rgba(99, 99, 99, 0.09),
+          0 0 3px 0 rgba(99, 99, 99, 0.10);
+}
+
+.lang-switcher {
+  position: relative;
+}
+
+.dialog-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  z-index: 9998;
+}
+
+.lng-switcher-dialog {
+  position: absolute;
+  top: 40px;
+  max-width: 500px;
+  width: 90%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  background: #FFF;
+  box-shadow: 0 2px 17px 0 rgba(149, 149, 149, 0.10);
+  z-index: 9999;
+  padding: 0 40px 0 40px;
+  box-sizing: border-box;
+}
+
+.non-selectable {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  background: transparent;
 }
 
 .nav-container {
@@ -392,7 +414,7 @@ input[type="password"]:active {
   width: 140px;
   height: 30px;
   margin-right: 30px;
-  font-family: "Lexend", sans-serif;
+  font-family: var(--Font-Family-Main), sans-serif;
   border-radius: 100px;
   background: #FFF;
   opacity: 0;
@@ -482,7 +504,7 @@ input[type="password"]:active {
 
 .details-data-container {
   padding: 20px 15px 70px 15px;
-  font-family: "Lexend", sans-serif;
+  font-family: var(--Font-Family-Main), sans-serif;
   font-style: normal;
   line-height: 18px;
   position: relative;
