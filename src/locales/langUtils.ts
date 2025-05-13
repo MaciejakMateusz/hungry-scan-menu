@@ -10,3 +10,7 @@ export const getTranslation = (obj: Translatable) => {
     }
     return obj.defaultTranslation
 }
+
+export const getLanguage = () => {
+    return i18n?.language ? i18n.language : getCookie('i18next');
+}
