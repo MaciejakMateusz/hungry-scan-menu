@@ -117,18 +117,20 @@ input[type="password"]:active {
   justify-content: space-between;
   gap: 10px;
   padding: 8px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
+  color: var(--Basic-900);
 }
 
 .welcome-text-container {
   max-width: 100%;
   height: 80px;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 400;
   margin-left: 30px;
   display: flex;
   align-items: center;
+  color: var(--Basic-900);
 }
 
 .flex-centered {
@@ -221,7 +223,7 @@ input[type="password"]:active {
 
 .nav-category.active {
   background: #318E41;
-  color: #FFF;
+  color: var(--Basic-200);
 }
 
 .menu-items-wrapper {
@@ -234,7 +236,7 @@ input[type="password"]:active {
   height: 124px;
   border-radius: 12px;
   background: var(--Basic-100);
-  margin-bottom: 16px;
+  margin-bottom: 22px;
   cursor: pointer;
 }
 
@@ -283,7 +285,7 @@ input[type="password"]:active {
 }
 
 .menu-item-image {
-  border-radius: 16px;
+  border-radius: 8px;
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -328,14 +330,14 @@ input[type="password"]:active {
 }
 
 .menu-item-name {
-  font-weight: 500;
-  color: #222;
+  font-weight: 400;
+  color: var(--Basic-900);
   margin-bottom: 5px;
   font-size: 14px;
 }
 
 .menu-item-description {
-  color: #7D7D7D;
+  color: var(--Grey-700);
   font-weight: 300;
   line-height: 18px;
   font-size: 12px;
@@ -353,7 +355,7 @@ input[type="password"]:active {
   left: 0;
   bottom: 0;
   font-weight: 500;
-  color: #222;
+  color: var(--Basic-900);
 }
 
 .menu-item-price.promo {
