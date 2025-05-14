@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {MenuItemPosition} from "./MenuItemPosition.tsx";
+import {MenuItemPosition} from "./menu-item/MenuItemPosition.tsx";
 import {useTranslation} from "react-i18next";
 import type {MenuItem} from "../../interfaces/MenuItem.ts";
 

@@ -1,6 +1,6 @@
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import type {MenuItem} from "../../interfaces/MenuItem.ts";
-import {s3BucketUrl} from "../../apiData.ts";
+import type {MenuItem} from "../../../interfaces/MenuItem.ts";
+import {s3BucketUrl} from "../../../apiData.ts";
 
 type MenuItemImageType = {
     menuItem: MenuItem;
