@@ -17,4 +17,5 @@ export interface MenuItem {
     additionalIngredients: Ingredient[];
     variants: Variant[];
     banners: Banner[];
+    updated: Date;
 }
