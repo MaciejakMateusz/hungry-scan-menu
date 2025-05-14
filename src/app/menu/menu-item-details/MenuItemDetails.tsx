@@ -2,8 +2,12 @@ import {useEffect} from "react";
 import {PriceFooter} from "./PriceFooter";
 import {ImageSection} from "./ImageSection.js";
 import {DataSection} from "./DataSection.js";
+import {useImageExists} from "../../../hooks/useHasImage.ts";
+import {useSelector} from "react-redux";
 
 export const MenuItemDetails = () => {
+    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
+    const hasImage = useImageExists(menuItem?.id);
 
     useEffect(() => {
         window.scrollTo({ top: 0});
@@ -11,8 +15,8 @@ export const MenuItemDetails = () => {
 
     return (
         <div className={'menu-item-details-container'}>
-            <ImageSection/>
-            <DataSection/>
+            <ImageSection hasImage={hasImage}/>
+            <DataSection hasImage={hasImage}/>
             <PriceFooter/>
         </div>
     );

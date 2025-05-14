@@ -8,17 +8,21 @@ import {getVariants} from "../../../slices/dishesCategoriesSlice";
 import {useEffect} from "react";
 import {useAppDispatch} from "../../../hooks/hooks.ts";
 
-export const DataSection = () => {
+type DataSectionType = {
+    hasImage: boolean | null;
+}
+
+export const DataSection = ({hasImage}: DataSectionType) => {
     const dispatch = useAppDispatch();
     const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
-    const imgName = menuItem.imageName;
+
 
     useEffect(() => {
         dispatch(getVariants());
     }, [dispatch])
 
     return (
-        <section className={`details-data-section ${!imgName ? 'no-image' : ''}`}>
+        <section className={`details-data-section ${!hasImage ? 'no-image' : ''}`}>
             <div className={'details-data-container'}>
                 <Banner detailMode={true} menuItem={menuItem}/>
                 <NameAndDescription/>
