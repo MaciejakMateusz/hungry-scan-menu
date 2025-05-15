@@ -249,7 +249,7 @@ input[type="password"]:active {
 
 .banner-container {
   display: flex;
-  padding: 3px 7px;
+  padding: 3px 9px 3px 7px;
   justify-content: center;
   align-items: center;
   border-radius: 100px;
@@ -292,19 +292,19 @@ input[type="password"]:active {
   z-index: 1;
 }
 
-.menu-item-banner {
-  position: absolute;
-  padding: 4px 11px;
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: -0.2px;
-  color: #FFF;
-  background: #000;
-  margin-top: -15px;
-  z-index: 1;
+.details-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
 }
+
+.banner-wrapper-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+
 
 .details-labels-container {
   margin-left: 15px;
@@ -312,8 +312,6 @@ input[type="password"]:active {
 }
 
 .details-label-icon {
-  width: 30px;
-  height: 30px;
   margin-right: 6px;
 }
 
@@ -529,7 +527,7 @@ input[type="password"]:active {
 
 .details-data-section {
   position: relative;
-  border-radius: 40px 40px 0 0;
+  border-radius: 20px 20px 0 0;
   background: #FFF;
   margin-top: -35px;
   box-shadow: 0 -9px 20px 0 rgba(0, 0, 0, 0.25);
@@ -545,28 +543,11 @@ input[type="password"]:active {
 }
 
 .details-data-container {
-  padding: 20px 15px 70px 15px;
+  padding: 17px 15px 70px 15px;
   font-family: var(--Font-Family-Main), sans-serif;
   font-style: normal;
   line-height: 18px;
   position: relative;
-}
-
-.details-banner {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: -0.2px;
-  color: #FFF;
-  background: #000;
-  margin-bottom: 17px;
-}
-
-.details-banner.no-image {
-  margin-top: 20px;
 }
 
 .details-name {
