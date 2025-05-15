@@ -15,7 +15,7 @@ export const MenuItemPosition = ({menuItem}: MenuItemPositionType) => {
     const {t} = useTranslation();
     const dispatch = useAppDispatch();
     const hasImage = useImageExists(menuItem.id);
-    const banners = menuItem.banners?.filter(banner => banner.id !== 'promo')
+    const banners = menuItem.banners?.filter(banner => banner.id !== 'promo');
 
     return (
         <div className={'menu-item-container'} onClick={() => dispatch(setMenuItem(menuItem))}>

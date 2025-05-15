@@ -1,12 +1,11 @@
-import {Banner} from "./Banner.js";
 import {NameAndDescription} from "./NameAndDescription";
 import {Allergens} from "./Allergens.js";
 import {Variants} from "./Variants";
 import {Additions} from "./Additions.js";
-import {useSelector} from "react-redux";
 import {getVariants} from "../../../slices/dishesCategoriesSlice";
 import {useEffect} from "react";
 import {useAppDispatch} from "../../../hooks/hooks.ts";
+import {BannersLabelsTopper} from "./BannersLabelsTopper.tsx";
 
 type DataSectionType = {
     hasImage: boolean | null;
@@ -14,8 +13,6 @@ type DataSectionType = {
 
 export const DataSection = ({hasImage}: DataSectionType) => {
     const dispatch = useAppDispatch();
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
-
 
     useEffect(() => {
         dispatch(getVariants());
@@ -24,7 +21,7 @@ export const DataSection = ({hasImage}: DataSectionType) => {
     return (
         <section className={`details-data-section ${!hasImage ? 'no-image' : ''}`}>
             <div className={'details-data-container'}>
-                <Banner detailMode={true} menuItem={menuItem}/>
+                <BannersLabelsTopper/>
                 <NameAndDescription/>
                 <Allergens/>
                 <Variants/>
