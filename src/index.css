@@ -593,26 +593,13 @@ input[type="password"]:active {
   margin-bottom: 6px;
 }
 
-.tooltip-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip-content {
-  position: absolute;
-  top: -35px;
-  box-shadow: 0 2px 15px 0 #0000001A;
-  background-color: #000;
-  color: #FFF;
-  padding: 5px 7px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  z-index: 1000;
-  pointer-events: none;
-  width: max-content;
-  max-width: 45vw;
-  white-space: normal;
-  overflow-wrap: break-word;
+.tippy-box.tooltip {
+  background-color: var(--Basic-100);
+  color: var(--Blue-600);
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .details-fixed-footer {

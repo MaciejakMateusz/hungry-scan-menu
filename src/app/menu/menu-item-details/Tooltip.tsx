@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import Tippy from "@tippyjs/react";
 
 type TooltipType = {
     children: any;
@@ -6,28 +6,15 @@ type TooltipType = {
 }
 
 export const Tooltip = ({children, content}: TooltipType) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    const handleMouseEnter = () => {
-        setIsVisible(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsVisible(false);
-    };
-
     return (
-        <div
-            className={'tooltip-wrapper'}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}>
-            {children}
-            {isVisible && (
-                <div
-                    className={'tooltip-content'}>
-                    {content}
-                </div>
-            )}
-        </div>
+        <Tippy content={content}
+               placement={"top"}
+               delay={0}
+               duration={0}
+               className={'tooltip'}>
+            <div>
+                {children}
+            </div>
+        </Tippy>
     );
 };

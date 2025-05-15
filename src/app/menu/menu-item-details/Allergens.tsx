@@ -20,9 +20,11 @@ export const Allergens = () => {
                 {menuItem?.allergens.map((allergen: Allergen) => (
                     <Tooltip content={getTranslation(allergen?.description)}
                              key={allergen?.id}>
-                        <ReactSVG className={'details-allergen-icon'}
-                                  src={`/theme/icons/${allergen.iconName}`}
-                        />
+                        <div>
+                            <ReactSVG className={'details-allergen-icon'}
+                                      src={`/theme/icons/${allergen.iconName}`}
+                            />
+                        </div>
                     </Tooltip>
                 ))}
             </div>
