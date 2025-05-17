@@ -1,5 +1,4 @@
 import {NameAndDescription} from "./NameAndDescription";
-import {Allergens} from "./Allergens.js";
 import {Variants} from "./Variants";
 import {Additions} from "./Additions.js";
 import {getVariants} from "../../../slices/dishesCategoriesSlice";
@@ -23,7 +22,6 @@ export const DataSection = ({hasImage}: DataSectionType) => {
             <div className={'details-data-container'}>
                 <BannersLabelsTopper/>
                 <NameAndDescription/>
-                <Allergens/>
                 <Variants/>
                 <Additions/>
             </div>

@@ -8,15 +8,16 @@ export const Labels = () => {
     const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
 
     if (menuItem?.labels === 0) {
-        return (<></>);
+        return null;
     }
 
     return (
         <div className={'details-labels-container'}>
             {menuItem.labels.map((label: Label) => (
                 <Tooltip content={getTranslation(label?.name)}
-                       key={label?.id}>
-                    <div>
+                         appendTo={document.getElementById(`label-${label?.id}`) || undefined}
+                         key={label?.id}>
+                    <div id={`label-${label?.id}`}>
                         <ReactSVG className={'details-label-icon'} src={`/theme/icons/${label?.iconName}`}/>
                     </div>
                 </Tooltip>
