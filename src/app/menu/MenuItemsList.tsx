@@ -13,7 +13,7 @@ export const MenuItemsList = () => {
 
     const renderMenuItems = () => {
         if (!chosenCategory) {
-            return (<></>);
+            return null;
         }
 
         if (filterActive) {

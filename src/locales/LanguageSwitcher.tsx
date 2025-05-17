@@ -32,7 +32,7 @@ export const LanguageSwitcher = () => {
     }
 
     const renderDialog = () => {
-        if(!isDisplayed) return (<></>);
+        if(!isDisplayed) return null;
         return (
             <div className={'dialog-mask'} onClick={() => setIsDisplayed(false)}>
                 <div className={'lng-switcher-dialog'}>

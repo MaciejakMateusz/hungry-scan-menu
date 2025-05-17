@@ -8,6 +8,11 @@ export const BannersLabelsTopper = () => {
     const {t} = useTranslation();
     const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
     const banners = menuItem.banners?.filter((banner: BannerType) => banner.id !== 'promo');
+    const shouldNotRender = (!banners || banners.length === 0) && (!menuItem?.labels || menuItem.labels.length === 0);
+
+    if (shouldNotRender) {
+        return null;
+    }
 
     return (
         <div className={'details-header'}>

@@ -10,7 +10,7 @@ type MenuItemImageType = {
 export const MenuItemImage = ({menuItem, hasImage}: MenuItemImageType) => {
     
     if (!hasImage) {
-        return (<></>);
+        return null;
     }
 
     return (
