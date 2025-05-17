@@ -3,13 +3,14 @@ import {formatPrice} from "../../../utils";
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import type {Addition} from "../../../interfaces/Addition.ts";
+import {MenuItemDetailsPosition} from "./MenuItemDetailsPosition.tsx";
 
 export const Additions = () => {
     const {t} = useTranslation();
     const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
 
     if (menuItem?.additionalIngredients.length === 0) {
-        return <></>;
+        return null;
     }
 
     return (
@@ -20,10 +21,10 @@ export const Additions = () => {
             </div>
             <div className={'details-list-positions-wrapper'}>
                 {menuItem.additionalIngredients.map((addition: Addition) => (
-                    <div className={'details-list-position-container'}>
-                        <span className={'details-list-position-text'}>{getTranslation(addition.name)}</span>
-                        <span className={'details-list-addition-price'}>+ {formatPrice(addition.price)} zł</span>
-                    </div>
+                    <MenuItemDetailsPosition name={getTranslation(addition.name)}
+                                             price={`+${formatPrice(addition.price)} zł`}
+                                             key={addition.id}
+                    />
                 ))}
             </div>
         </>

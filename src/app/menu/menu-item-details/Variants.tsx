@@ -3,6 +3,7 @@ import {formatPrice} from "../../../utils";
 import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import type {Variant} from "../../../interfaces/Variant.ts";
+import {MenuItemDetailsPosition} from "./MenuItemDetailsPosition.tsx";
 
 export const Variants = () => {
     const {variants} = useSelector<any, any>(state => state.dishesCategories.getVariants);
@@ -10,7 +11,7 @@ export const Variants = () => {
     const {t} = useTranslation();
 
     if (variants.length === 0) {
-        return <></>;
+        return null;
     }
 
     return (
@@ -18,11 +19,10 @@ export const Variants = () => {
             <div className={'details-definition-text'}>{t('variants')}:</div>
             <div className={'details-list-positions-wrapper'}>
                 {variants.map((variant: Variant) => (
-                    <div key={variant.id} className={'details-list-position-container'}>
-                        <span className={'details-list-position-text'}>{getTranslation(variant.name)}</span>
-                        <span
-                            className={'details-list-position-price'}>{formatPrice(variant.price + menuItem?.price)} zł</span>
-                    </div>
+                    <MenuItemDetailsPosition name={getTranslation(variant.name)}
+                                             price={`${formatPrice(variant.price + menuItem?.price)} zł`}
+                                             key={variant.id}
+                    />
                 ))}
             </div>
         </>
