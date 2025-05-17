@@ -3,11 +3,12 @@
   "new": "NEU",
   "allergens": "Allergene",
   "price": "Preis",
-  "variants": "Varianten",
+  "variants": "Verfügbare Varianten",
   "additions": "Zusätze",
   "optional": "optional",
   "search": "Suche",
   "noPositions": "Keine Positionen zum Anzeigen",
   "noCategories": "Keine Kategorien zum Anzeigen",
-  "proceedToMenu": "Zum Menü weitergehen"
+  "proceedToMenu": "Zum Menü fortfahren",
+  "canContain": "Kann enthalten:"
 }

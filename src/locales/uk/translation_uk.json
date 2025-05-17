@@ -1,13 +1,14 @@
 {
-  "bestseller": "ХІТ ПРОДАЖУ",
+  "bestseller": "ХІТ ПРОДАЖІВ",
   "new": "НОВИНКА",
   "allergens": "Алергени",
   "price": "Ціна",
-  "variants": "Варіанти",
+  "variants": "Доступні варіанти",
   "additions": "Додатки",
   "optional": "необов'язково",
   "search": "Пошук",
   "noPositions": "Немає позицій для відображення",
   "noCategories": "Немає категорій для відображення",
-  "proceedToMenu": "Перейти до меню"
+  "proceedToMenu": "Перейти до меню",
+  "canContain": "Може містити:"
 }
