@@ -1,20 +1,21 @@
 import Tippy from "@tippyjs/react";
+import type {ReactNode} from "react";
 
 type TooltipType = {
     children: any;
-    content: string;
+    content: string | ReactNode;
+    appendTo?: HTMLElement | undefined;
 }
 
-export const Tooltip = ({children, content}: TooltipType) => {
+export const Tooltip = ({children, content, appendTo}: TooltipType) => {
     return (
         <Tippy content={content}
                placement={"top"}
                delay={0}
                duration={0}
-               className={'tooltip'}>
-            <div>
-                {children}
-            </div>
+               className={'tooltip'}
+               appendTo={appendTo}>
+            {children}
         </Tippy>
     );
 };
