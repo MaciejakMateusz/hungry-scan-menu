@@ -1,10 +1,10 @@
 import {s3BucketUrl} from "../../../apiData";
 import {setMenuItem} from "../../../slices/dishesCategoriesSlice";
 import {useSelector} from "react-redux";
-import {ArrowLeftIcon} from "../../icons/ArrowLeftIcon.js";
 import {Img} from "react-image";
 import {LoadingSpinner} from "../../icons/LoadingSpinner.js";
 import {useAppDispatch} from "../../../hooks/hooks.ts";
+import {ReactSVG} from "react-svg";
 
 type ImageSectionType = {
     hasImage: boolean | null;
@@ -20,7 +20,7 @@ export const ImageSection = ({hasImage}: ImageSectionType) => {
 
     const renderImage = () => {
         if (!hasImage) {
-            return (<></>);
+            return null;
         }
         return (
             <div className={'details-image-container'}>
@@ -34,7 +34,9 @@ export const ImageSection = ({hasImage}: ImageSectionType) => {
 
     return (
         <section className={'details-image-section'}>
-            <button className={'return-button'} onClick={hideDetails}><ArrowLeftIcon/></button>
+            <button className={'return-button'} onClick={hideDetails}>
+                <ReactSVG src={'/theme/icons/chevron-left.svg'}/>
+            </button>
             {renderImage()}
         </section>
     );
