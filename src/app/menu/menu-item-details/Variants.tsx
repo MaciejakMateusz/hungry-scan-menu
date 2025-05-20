@@ -6,8 +6,8 @@ import type {Variant} from "../../../interfaces/Variant.ts";
 import {MenuItemDetailsPosition} from "./MenuItemDetailsPosition.tsx";
 
 export const Variants = () => {
-    const {variants} = useSelector<any, any>(state => state.dishesCategories.getVariants);
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
+    const {variants} = useSelector<any, any>(state => state.main.getVariants);
+    const {menuItem} = useSelector<any, any>(state => state.main.view);
     const {t} = useTranslation();
 
     if (variants.length === 0) {

@@ -5,7 +5,7 @@ import {ReactSVG} from "react-svg";
 import {Allergens} from "./Allergens.tsx";
 
 export const NameAndDescription = () => {
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
+    const {menuItem} = useSelector<any, any>(state => state.main.view);
     const hasBanner = menuItem.bestseller || menuItem.new;
     const hasNoAllergens = !menuItem.allergens || menuItem.allergens.length === 0;
     const info = document.getElementById('info-icon');

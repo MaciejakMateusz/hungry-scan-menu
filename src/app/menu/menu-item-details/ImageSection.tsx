@@ -1,5 +1,5 @@
 import {s3BucketUrl} from "../../../apiData";
-import {setMenuItem} from "../../../slices/dishesCategoriesSlice";
+import {setMenuItem} from "../../../slices/mainSlice.ts";
 import {useSelector} from "react-redux";
 import {Img} from "react-image";
 import {LoadingSpinner} from "../../icons/LoadingSpinner.js";
@@ -12,7 +12,7 @@ type ImageSectionType = {
 
 export const ImageSection = ({hasImage}: ImageSectionType) => {
     const dispatch = useAppDispatch();
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
+    const {menuItem} = useSelector<any, any>(state => state.main.view);
 
     const hideDetails = () => {
         dispatch(setMenuItem(null));

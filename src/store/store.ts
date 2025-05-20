@@ -1,9 +1,9 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import dishesCategoriesReducer from "../slices/dishesCategoriesSlice";
+import mainReducer from "../slices/mainSlice.ts";
 import statisticsReducer from "../slices/statisticsSlice";
 
 const rootReducer = combineReducers({
-    dishesCategories: dishesCategoriesReducer,
+    main: mainReducer,
     statistics: statisticsReducer
 })
 

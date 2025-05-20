@@ -6,7 +6,7 @@ import {useImageExists} from "../../../hooks/useHasImage.ts";
 import {useSelector} from "react-redux";
 
 export const MenuItemDetails = () => {
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
+    const {menuItem} = useSelector<any, any>(state => state.main.view);
     const hasImage = useImageExists(menuItem?.id);
 
     useEffect(() => {

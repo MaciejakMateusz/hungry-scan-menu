@@ -7,7 +7,7 @@ import {useEffect} from "react";
 
 export const ViewsController = () => {
     const dispatch = useAppDispatch();
-    const {menuItem} = useSelector<any, any>(s => s.dishesCategories.view);
+    const {menuItem} = useSelector<any, any>(s => s.main.view);
     const {menuItems} = useSelector<any, any>(s => s.statistics.menuItemViews);
 
     useEffect(() => {

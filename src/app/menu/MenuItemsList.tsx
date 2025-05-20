@@ -5,9 +5,9 @@ import type {MenuItem} from "../../interfaces/MenuItem.ts";
 
 export const MenuItemsList = () => {
     const {t} = useTranslation();
-    const chosenCategory = useSelector<any, any>(state => state.dishesCategories.view.category);
-    const {filterActive, filteredItems} = useSelector<any, any>(state => state.dishesCategories.view);
-    const {isPending} = useSelector<any, any>(state => state.dishesCategories.filter);
+    const chosenCategory = useSelector<any, any>(state => state.main.view.category);
+    const {filterActive, filteredItems} = useSelector<any, any>(state => state.main.view);
+    const {isPending} = useSelector<any, any>(state => state.main.filter);
     const noPositions = chosenCategory?.menuItems.length === 0;
     const noFilteredItems = filterActive && (!filteredItems || filteredItems?.length === 0) && !isPending;
 

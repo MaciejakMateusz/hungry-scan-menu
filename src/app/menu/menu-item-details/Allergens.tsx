@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 export const Allergens = () => {
     const {t} = useTranslation();
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
+    const {menuItem} = useSelector<any, any>(state => state.main.view);
 
     return (
         <div>

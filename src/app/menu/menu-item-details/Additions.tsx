@@ -7,7 +7,7 @@ import {MenuItemDetailsPosition} from "./MenuItemDetailsPosition.tsx";
 
 export const Additions = () => {
     const {t} = useTranslation();
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
+    const {menuItem} = useSelector<any, any>(state => state.main.view);
 
     if (menuItem?.additionalIngredients.length === 0) {
         return null;

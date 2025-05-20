@@ -5,7 +5,7 @@ import type {Label} from "../../../interfaces/Label.ts";
 import {Tooltip} from "./Tooltip.tsx";
 
 export const Labels = () => {
-    const {menuItem} = useSelector<any, any>(state => state.dishesCategories.view);
+    const {menuItem} = useSelector<any, any>(state => state.main.view);
 
     if (menuItem?.labels === 0) {
         return null;

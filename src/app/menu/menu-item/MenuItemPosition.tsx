@@ -1,4 +1,4 @@
-import {setMenuItem} from "../../../slices/dishesCategoriesSlice.ts";
+import {setMenuItem} from "../../../slices/mainSlice.ts";
 import {MenuItemImage} from "./MenuItemImage.tsx";
 import {MenuItemContent} from "./MenuItemContent.tsx";
 import type {MenuItem} from "../../../interfaces/MenuItem.ts";
