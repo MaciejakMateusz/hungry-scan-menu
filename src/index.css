@@ -24,7 +24,8 @@
     --Green-700: #02592B;
     --Green-800: #003A1D;
     --Green-900: #001C0D;
-    --Price-Button: #318E41;
+
+    --Default-Theme: #318E41;
 
     --Red-100: #F9D9E0;
     --Red-200: #F8B6C5;
@@ -223,7 +224,7 @@ input[type="password"]:active {
 }
 
 .nav-category.active {
-    background: var(--Price-Button);
+    background: var(--Default-Theme);
     color: var(--Basic-200);
 }
 
@@ -644,7 +645,7 @@ input[type="password"]:active {
     align-items: center;
     gap: 10px;
     border-radius: 100px;
-    background: var(--Price-Button);
+    background: var(--Default-Theme);
     position: fixed;
     bottom: 20px;
     width: 90%;
