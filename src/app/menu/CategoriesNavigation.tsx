@@ -3,13 +3,13 @@ import {SearchIcon} from "../icons/SearchIcon.js";
 import {useSelector} from "react-redux";
 import {
     filter,
-    getCategories,
+    getMenu,
     setCategory,
     setFilterActive,
     setFilteredItems,
     setFilterExpanded,
     setFilterValue
-} from "../../slices/dishesCategoriesSlice";
+} from "../../slices/mainSlice.ts";
 import {getTranslation} from "../../locales/langUtils";
 import {FilteringForm} from "./FilteringForm";
 import {useTranslation} from "react-i18next";
@@ -21,17 +21,17 @@ import {useAppDispatch} from "../../hooks/hooks.ts";
 export const CategoriesNavigation = () => {
     const dispatch = useAppDispatch();
     const {t} = useTranslation();
-    const {categories} = useSelector((state: RootState) => state.dishesCategories.getCategories);
-    const chosenCategory: any = useSelector((state: RootState) => state.dishesCategories.view.category);
-    const {filterExpanded, filterValue} = useSelector((state: RootState) => state.dishesCategories.view);
-    const {isPending} = useSelector((state: RootState) => state.dishesCategories.filter);
-    const {isLoading} = useSelector((state: RootState) => state.dishesCategories.getCategories);
+    const {categories} = useSelector((state: RootState) => state.main.getMenu);
+    const chosenCategory: any = useSelector((state: RootState) => state.main.view.category);
+    const {filterExpanded, filterValue} = useSelector((state: RootState) => state.main.view);
+    const {isPending} = useSelector((state: RootState) => state.main.filter);
+    const {isLoading, menu} = useSelector<any, any>((state: RootState) => state.main.getMenu);
 
     const fetchCategories = useCallback(async () => {
-        const result = await dispatch(getCategories());
-        if (getCategories.fulfilled.match(result) && !chosenCategory) {
+        const result = await dispatch(getMenu());
+        if (getMenu.fulfilled.match(result) && !chosenCategory) {
             dispatch(
-                setCategory(result.payload.length > 0 ? result.payload[0] : null)
+                setCategory(result.payload.categories.length > 0 ? result.payload.categories[0] : null)
             );
         }
     }, [dispatch, chosenCategory]);
@@ -70,6 +70,7 @@ export const CategoriesNavigation = () => {
         return categories.map((category: Category) => (
             <div key={category.id}
                  className={`nav-category ${category?.id === chosenCategory?.id ? 'active' : ''}`}
+                 style={category?.id === chosenCategory?.id ? {background: menu?.theme} : {}}
                  onClick={() => dispatch(setCategory(category))}>
                 <span>{getTranslation(category?.name)}</span>
             </div>
