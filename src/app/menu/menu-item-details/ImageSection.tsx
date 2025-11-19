@@ -24,7 +24,7 @@ export const ImageSection = ({hasImage}: ImageSectionType) => {
         }
         return (
             <div className={'details-image-container'}>
-                <Img src={`${s3BucketUrl}/${menuItem?.id}?t=${menuItem.updated}`}
+                <Img src={`${s3BucketUrl}/${menuItem?.id}.png?t=${menuItem.updated}`}
                      loader={<LoadingSpinner customContainerStyle={{height: 'calc(100% - 470px)'}}/>}
                      className={'details-image'}
                 />
