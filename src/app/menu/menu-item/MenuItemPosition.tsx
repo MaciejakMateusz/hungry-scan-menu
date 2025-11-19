@@ -3,7 +3,7 @@ import {MenuItemImage} from "./MenuItemImage.tsx";
 import {MenuItemContent} from "./MenuItemContent.tsx";
 import type {MenuItem} from "../../../interfaces/MenuItem.ts";
 import {useAppDispatch} from "../../../hooks/hooks.ts";
-import {useImageExists} from "../../../hooks/useHasImage.ts";
+import {useImageExists} from "../../../hooks/useImageExists.ts";
 import {Banner} from "./Banner.tsx";
 import {useTranslation} from "react-i18next";
 
