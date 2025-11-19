@@ -17,6 +17,7 @@ import {LoadingSpinner} from "../icons/LoadingSpinner.js";
 import type {RootState} from "../../store/store.ts";
 import type {Category} from "../../interfaces/Category.ts";
 import {useAppDispatch} from "../../hooks/hooks.ts";
+import {useParams} from "react-router-dom";
 
 export const CategoriesNavigation = () => {
     const dispatch = useAppDispatch();
@@ -26,19 +27,20 @@ export const CategoriesNavigation = () => {
     const {filterExpanded, filterValue} = useSelector((state: RootState) => state.main.view);
     const {isPending} = useSelector((state: RootState) => state.main.filter);
     const {isLoading, menu} = useSelector<any, any>((state: RootState) => state.main.getMenu);
+    const {theme} = useParams();
 
     const fetchCategories = useCallback(async () => {
         const result = await dispatch(getMenu());
-        if (getMenu.fulfilled.match(result) && !chosenCategory) {
+        if (getMenu.fulfilled.match(result)) {
             dispatch(
                 setCategory(result.payload.categories.length > 0 ? result.payload.categories[0] : null)
             );
         }
-    }, [dispatch, chosenCategory]);
+    }, [dispatch]);
 
     useEffect(() => {
-        if(categories.length === 0) fetchCategories();
-    }, [categories, fetchCategories]);
+        fetchCategories();
+    }, [fetchCategories]);
 
     const handleSearchSubmit = async (e: any) => {
         e.preventDefault();
@@ -70,7 +72,7 @@ export const CategoriesNavigation = () => {
         return categories.map((category: Category) => (
             <div key={category.id}
                  className={`nav-category ${category?.id === chosenCategory?.id ? 'active' : ''}`}
-                 style={category?.id === chosenCategory?.id ? {background: menu?.theme} : {}}
+                 style={category?.id === chosenCategory?.id ? {background: theme ? theme : menu?.theme} : {}}
                  onClick={() => dispatch(setCategory(category))}>
                 <span>{getTranslation(category?.name)}</span>
             </div>
