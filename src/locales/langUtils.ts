@@ -3,12 +3,18 @@ import {getCookie} from "../utils";
 import type {Translatable} from "../interfaces/Translatable.ts";
 
 export const getTranslation = (obj: Translatable) => {
-    const lngCookie = getCookie('lng')
-    const currentLang = lngCookie ? lngCookie : i18n.language
-    if(currentLang === 'en') {
-        return obj.translationEn || obj.defaultTranslation
+    const currentLang = getLanguage();
+    switch (currentLang) {
+        case 'pl': return obj.pl;
+        case 'pl-PL': return obj.pl;
+        case 'en': return obj.en ? obj.en : obj.pl;
+        case 'en-US': return obj.en ? obj.en : obj.pl;
+        case 'fr': return obj.fr ? obj.fr : obj.pl;
+        case 'de': return obj.de ? obj.de : obj.pl;
+        case 'es': return obj.es ? obj.es : obj.pl;
+        case 'uk': return obj.uk ? obj.uk : obj.pl;
+        default: return '';
     }
-    return obj.defaultTranslation
 }
 
 export const getLanguage = () => {
