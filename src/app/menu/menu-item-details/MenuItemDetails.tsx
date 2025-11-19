@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import {PriceFooter} from "./PriceFooter";
 import {ImageSection} from "./ImageSection.js";
 import {DataSection} from "./DataSection.js";
-import {useImageExists} from "../../../hooks/useHasImage.ts";
+import {useImageExists} from "../../../hooks/useImageExists.ts";
 import {useSelector} from "react-redux";
 
 export const MenuItemDetails = () => {
