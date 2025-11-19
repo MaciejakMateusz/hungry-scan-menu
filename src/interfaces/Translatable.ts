@@ -1,5 +1,9 @@
 export interface Translatable {
     id: number;
-    defaultTranslation: string;
-    translationEn: string;
+    pl: string;
+    en: string;
+    fr: string;
+    de: string;
+    es: string;
+    uk: string;
 }
