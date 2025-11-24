@@ -3,15 +3,18 @@ import {useSelector} from "react-redux";
 import {Tooltip} from "./Tooltip.tsx";
 import {ReactSVG} from "react-svg";
 import {Allergens} from "./Allergens.tsx";
+import type {Banner as BannerType} from "../../../interfaces/Banner.ts";
 
 export const NameAndDescription = () => {
     const {menuItem} = useSelector<any, any>(state => state.main.view);
-    const hasBanner = menuItem.bestseller || menuItem.new;
-    const hasNoAllergens = !menuItem.allergens || menuItem.allergens.length === 0;
+    const hasBanners = menuItem.banners
+        ?.filter((banner: BannerType) => banner.id !== 'promo').length > 0;
+    const hasLabels = menuItem.labels?.length > 0;
+    const hasAllergens = menuItem.allergens?.length > 0;
     const info = document.getElementById('info-icon');
 
     const renderTooltip = () => {
-        if (hasNoAllergens) return null;
+        if (!hasAllergens) return null;
         return (
             <Tooltip content={<Allergens/>} appendTo={info || undefined}>
                 <div className={'inline-block'}>
@@ -23,7 +26,7 @@ export const NameAndDescription = () => {
 
     return (
         <>
-            <div className={`details-name ${!hasBanner ? 'no-banner' : ''}`}>
+            <div className={'details-name'} style={hasBanners || hasLabels ? {marginTop: '15px'} : {}}>
                 <span>
                     {getTranslation(menuItem.name)}
                     {renderTooltip()}
