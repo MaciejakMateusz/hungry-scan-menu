@@ -4,4 +4,5 @@ export interface Addition {
     id: number;
     name: Translatable;
     price: number;
+    available: boolean;
 }
