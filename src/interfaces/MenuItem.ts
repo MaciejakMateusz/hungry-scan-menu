@@ -18,4 +18,5 @@ export interface MenuItem {
     variants: Variant[];
     banners: Banner[];
     updated: Date;
+    available: boolean;
 }
