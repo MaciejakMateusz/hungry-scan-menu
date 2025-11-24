@@ -1,16 +1,12 @@
 type LoadingSpinnerType = {
-    buttonMode?: boolean | null;
-    customStyle?: object | null;
     customContainerStyle?: object | null;
 }
 
-export const LoadingSpinner = ({buttonMode, customStyle, customContainerStyle}: LoadingSpinnerType) => {
+export const LoadingSpinner = ({customContainerStyle}: LoadingSpinnerType) => {
 
     return (
-        <div className={buttonMode ? 'button-spinner-container' : 'spinner-container'}
-             style={customContainerStyle ? customContainerStyle : {}}>
-            <div className={buttonMode ? 'button-spinner' : 'spinner'}
-                 style={customStyle ? customStyle : {}}/>
+        <div className={'spinner-container'} style={customContainerStyle ? customContainerStyle : {}}>
+            <div className={'loader'}/>
         </div>
     );
 };
