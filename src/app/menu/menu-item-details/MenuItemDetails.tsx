@@ -1,5 +1,4 @@
 import {useEffect} from "react";
-import {PriceFooter} from "./PriceFooter";
 import {ImageSection} from "./ImageSection.js";
 import {DataSection} from "./DataSection.js";
 import {useImageExists} from "../../../hooks/useImageExists.ts";
@@ -17,7 +16,6 @@ export const MenuItemDetails = () => {
         <div className={'menu-item-details-container'}>
             <ImageSection hasImage={hasImage}/>
             <DataSection hasImage={hasImage}/>
-            <PriceFooter/>
         </div>
     );
 }
