@@ -17,14 +17,18 @@ export const MenuItemsList = () => {
         }
 
         if (filterActive) {
-            return filteredItems?.map((menuItem: MenuItem) => (
-                <MenuItemPosition key={menuItem?.id} menuItem={menuItem}/>
-            ))
+            return filteredItems
+                ?.filter((menuItem: MenuItem) => menuItem.available)
+                .map((menuItem: MenuItem) => (
+                    <MenuItemPosition key={menuItem?.id} menuItem={menuItem}/>
+                ))
         }
 
-        return chosenCategory.menuItems.map((menuItem: MenuItem) => (
-            <MenuItemPosition key={menuItem?.id} menuItem={menuItem}/>
-        ));
+        return chosenCategory.menuItems
+            ?.filter((menuItem: MenuItem) => menuItem.available)
+            .map((menuItem: MenuItem) => (
+                <MenuItemPosition key={menuItem?.id} menuItem={menuItem}/>
+            ));
     }
 
     return (
