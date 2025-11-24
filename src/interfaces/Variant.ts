@@ -4,4 +4,6 @@ export interface Variant {
     id: number;
     name: Translatable;
     price: number;
+    available: boolean;
+    displayOrder: number;
 }
