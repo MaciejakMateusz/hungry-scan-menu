@@ -7,8 +7,10 @@ import {MenuItemDetailsPosition} from "./MenuItemDetailsPosition.tsx";
 
 export const Variants = () => {
     const {t} = useTranslation();
-    const {variants} = useSelector<any, any>(state => state.main.getVariants);
     const {menuItem} = useSelector<any, any>(state => state.main.view);
+    const variants = menuItem?.variants
+        ?.filter((v: Variant) => v.available)
+        .sort((a: Variant, b: Variant) => a.displayOrder - b.displayOrder);
 
     if (variants.length === 0) {
         return null;
