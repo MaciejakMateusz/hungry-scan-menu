@@ -20,7 +20,9 @@ export const Additions = () => {
                 <span className={'optional-text'}> ({t('optional')}):</span>
             </div>
             <div className={'details-list-positions-wrapper'}>
-                {menuItem.additionalIngredients.map((addition: Addition) => (
+                {menuItem.additionalIngredients
+                    .filter((addition: Addition) => addition.available)
+                    .map((addition: Addition) => (
                     <MenuItemDetailsPosition name={getTranslation(addition.name)}
                                              price={`+${formatPrice(addition.price)} zł`}
                                              key={addition.id}
