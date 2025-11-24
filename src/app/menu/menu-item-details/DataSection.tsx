@@ -5,6 +5,7 @@ import {getVariants} from "../../../slices/mainSlice.ts";
 import {useEffect} from "react";
 import {useAppDispatch} from "../../../hooks/hooks.ts";
 import {BannersLabelsTopper} from "./BannersLabelsTopper.tsx";
+import {PriceFooter} from "./PriceFooter.tsx";
 
 type DataSectionType = {
     hasImage: boolean | null;
@@ -25,6 +26,7 @@ export const DataSection = ({hasImage}: DataSectionType) => {
                 <Variants/>
                 <Additions/>
             </div>
+            <PriceFooter/>
         </section>
     );
 }
