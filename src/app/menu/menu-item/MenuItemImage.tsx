@@ -1,6 +1,6 @@
-import {LazyLoadImage} from 'react-lazy-load-image-component';
 import type {MenuItem} from "../../../interfaces/MenuItem.ts";
 import {s3BucketUrl} from "../../../apiData.ts";
+import {Img} from "react-image";
 
 type MenuItemImageType = {
     menuItem: MenuItem;
@@ -8,17 +8,16 @@ type MenuItemImageType = {
 }
 
 export const MenuItemImage = ({menuItem, hasImage}: MenuItemImageType) => {
-    
+
     if (!hasImage) {
         return null;
     }
 
     return (
         <div className={`menu-item-image-container ${!hasImage ? 'no-photo' : ''}`}>
-            <LazyLoadImage alt={'Menu position image'}
-                           className={'menu-item-image'}
-                           src={`${s3BucketUrl}/${menuItem.id}.png?t=${menuItem.updated}`}
-                           placeholderSrc="/theme/images/placeholder-image.png"
+            <Img alt={'Menu position image'}
+                 className={'menu-item-image'}
+                 src={`${s3BucketUrl}/${menuItem.id}.png?t=${menuItem.updated}`}
             />
         </div>
     );
