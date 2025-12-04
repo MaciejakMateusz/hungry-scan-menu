@@ -1,4 +1,4 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import {combineReducers, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {apiHost} from "../apiData";
 import {getCookie} from "../utils";
 
@@ -28,3 +28,55 @@ export const executePostScanActions = createAsyncThunk(
         return await response.json();
     }
 );
+
+export const getOperatingHours = createAsyncThunk(
+    'getOperatingHours/getOperatingHours',
+    async (token: string | undefined, {rejectWithValue}) => {
+        const response = await fetch(`${apiHost}/api/cms/restaurants/operating-hours/${token}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: "include"
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            return rejectWithValue(errorData);
+        }
+
+        return await response.json().catch(() => {});
+    }
+);
+
+export const getOperatingHoursSlice = createSlice({
+    name: 'getOperatingHours',
+    initialState: {
+        operatingHours: null,
+        isLoading: false
+    },
+    reducers: {
+        setIsLoading: (state, action) => {
+            state.isLoading = action.payload;
+        }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getOperatingHours.pending, state => {
+                state.isLoading = true;
+            })
+            .addCase(getOperatingHours.fulfilled, (state, action) => {
+                state.operatingHours = action.payload;
+                state.isLoading = false;
+            })
+            .addCase(getOperatingHours.rejected, state => {
+                state.isLoading = false;
+            })
+    }
+});
+
+const postScanReducer = combineReducers({
+    operatingHours: getOperatingHoursSlice.reducer
+});
+
+export default postScanReducer;
