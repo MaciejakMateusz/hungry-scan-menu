@@ -699,6 +699,79 @@ input[type="password"]:active {
     font-size: 14px;
 }
 
+.pessimistic-path-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #121620;
+    color: #FFF;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.pessimistic-path-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pessimistic-path-header {
+    margin: 50px 0 15px 0;
+    font-weight: 600;
+    font-size: 48px;
+    text-align: center;
+    line-height: 37px;
+}
+
+.pessimistic-path-paragraph {
+    font-size: 20px;
+    text-align: center;
+}
+
+.brand-logo-container {
+    background: #000;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.operating-hours-container {
+    padding: 40px 0;
+}
+
+.operating-hours-position {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.operating-hours-day {
+    color: #93939E;
+}
+
+@media (max-width: 500px) {
+    .pessimistic-path-header {
+        font-size: 34px;
+    }
+
+    .pessimistic-path-paragraph {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .operating-hours-position {
+        gap: 15px;
+        font-size: 14px;
+    }
+}
+
 /* END OF MENU ITEM DETAILS */
 
 /* ----- LOADING SPINNER ----- */
