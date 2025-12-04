@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import mainReducer from "../slices/mainSlice.ts";
 import statisticsReducer from "../slices/statisticsSlice";
+import postScanReducer from "../slices/postScanSlice.ts";
 
 const rootReducer = combineReducers({
     main: mainReducer,
+    postScan: postScanReducer,
     statistics: statisticsReducer
 })
 
