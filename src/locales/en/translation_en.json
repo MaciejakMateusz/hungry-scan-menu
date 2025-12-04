@@ -10,5 +10,16 @@
   "noPositions": "No positions to display",
   "noCategories": "No categories to display",
   "proceedToMenu": "Proceed to menu",
-  "canContain": "Can contain:"
+  "canContain": "Can contain:",
+  "weAreSorry": "We are sorry...",
+  "weAreClosed": "We are closed! Come back in this opening hours:",
+  "qrCodeInvalid": "The scanned QR code is invalid or inactive.",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday",
+  "closed": "Closed"
 }
