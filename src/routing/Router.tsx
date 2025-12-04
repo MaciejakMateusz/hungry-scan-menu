@@ -6,6 +6,8 @@ import {useEffect} from "react";
 import {useAppDispatch} from "../hooks/hooks.ts";
 import {executePostScanActions} from "../slices/postScanSlice.ts";
 import {PrivateRoutes} from "./PrivateRoutes.tsx";
+import {RestaurantClosed} from "../app/menu/restaurant-closed/RestaurantClosed.tsx";
+import {InvalidToken} from "../app/menu/invalid-token/InvalidToken.tsx";
 
 export const Router = () => {
     const dispatch = useAppDispatch();
@@ -14,7 +16,6 @@ export const Router = () => {
         dispatch(executePostScanActions());
     }, [dispatch]);
 
-    //todo obsłużyć ścieżkę /invalid-token
     return (
         <BrowserRouter future={{
             v7_startTransition: true,
@@ -22,7 +23,8 @@ export const Router = () => {
         }}>
             <Routes>
                 <Route path='/' element={<RedirectTo module={'menu'}/>}/>
-                <Route path='/invalid-token' element={<h1>Nieprawidłowy token restauracji</h1>}/>
+                <Route path='/invalid-token' element={<InvalidToken/>}/>
+                <Route path='/restaurant-closed/:token' element={<RestaurantClosed/>}/>
                 <Route path='/menu' element={<ViewsController/>}/>
                 <Route element={<PrivateRoutes/>}>
                     <Route path='/menu/:preview/:message/:theme/:bannerIconVisible' element={<ViewsController/>}/>
