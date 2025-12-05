@@ -12,9 +12,9 @@ export const PriceFooter = () => {
     return (
         <div className={'details-fixed-footer'}>
             <div className={'details-price-label'} style={{background: theme ? theme : menu?.theme}}>
-                        <span className={'details-price-text'}>
-                            {t('price')} &nbsp; &#x2022; &nbsp; {formatPrice(menuItem.price)} zł
-                        </span>
+                <span className={'details-price-text'}>
+                    {t('price')} &nbsp; &#x2022; &nbsp; {formatPrice(menuItem.promoPrice ?? menuItem.price)} zł
+                </span>
             </div>
         </div>
     );
