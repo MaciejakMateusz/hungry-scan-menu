@@ -1,4 +1,4 @@
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useRef} from "react";
 import {SearchIcon} from "../icons/SearchIcon.js";
 import {useSelector} from "react-redux";
 import {
@@ -18,6 +18,7 @@ import type {RootState} from "../../store/store.ts";
 import type {Category} from "../../interfaces/Category.ts";
 import {useAppDispatch} from "../../hooks/hooks.ts";
 import {useParams} from "react-router-dom";
+import i18n from "../../i18n.ts";
 
 export const CategoriesNavigation = () => {
     const dispatch = useAppDispatch();
@@ -28,19 +29,57 @@ export const CategoriesNavigation = () => {
     const {isPending} = useSelector((state: RootState) => state.main.filter);
     const {isLoading, menu} = useSelector<any, any>((state: RootState) => state.main.getMenu);
     const {theme} = useParams();
+    const navRef = useRef<HTMLDivElement | null>(null);
+    const isDown = useRef(false);
+    const startX = useRef(0);
+    const scrollLeft = useRef(0);
 
     const fetchCategories = useCallback(async () => {
         const result = await dispatch(getMenu());
         if (getMenu.fulfilled.match(result)) {
-            dispatch(
-                setCategory(result.payload.categories.length > 0 ? result.payload.categories[0] : null)
-            );
+            dispatch(setCategory(result.payload.categories.length > 0 ? result.payload.categories[0] : null));
+            i18n.changeLanguage(result.payload.restaurant.language.toLowerCase());
         }
     }, [dispatch]);
 
     useEffect(() => {
         fetchCategories();
     }, [fetchCategories]);
+
+    useEffect(() => {
+        const slider = navRef.current;
+        if (!slider) return;
+
+        const handleDown = (e: PointerEvent) => {
+            isDown.current = true;
+            startX.current = e.pageX - slider.offsetLeft;
+            scrollLeft.current = slider.scrollLeft;
+        };
+
+        const handleLeaveOrUp = () => {
+            isDown.current = false;
+        };
+
+        const handleMove = (e: PointerEvent) => {
+            if (!isDown.current) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = x - startX.current;
+            slider.scrollLeft = scrollLeft.current - walk;
+        };
+
+        slider.addEventListener("pointerdown", handleDown);
+        slider.addEventListener("pointerleave", handleLeaveOrUp);
+        slider.addEventListener("pointerup", handleLeaveOrUp);
+        slider.addEventListener("pointermove", handleMove);
+
+        return () => {
+            slider.removeEventListener("pointerdown", handleDown);
+            slider.removeEventListener("pointerleave", handleLeaveOrUp);
+            slider.removeEventListener("pointerup", handleLeaveOrUp);
+            slider.removeEventListener("pointermove", handleMove);
+        };
+    }, []);
 
     const handleSearchSubmit = async (e: any) => {
         e.preventDefault();
@@ -80,7 +119,7 @@ export const CategoriesNavigation = () => {
     };
 
     return (
-        <div className={'nav-container'}>
+        <div className={'nav-container'} ref={navRef}>
             <div className={`search-button ${filterExpanded ? 'search-active' : ''}`}>
                 <button className={`search-initial-circle ${filterExpanded ? 'circle-active' : ''}`}
                         onClick={() => dispatch(setFilterExpanded(!filterExpanded))}>
