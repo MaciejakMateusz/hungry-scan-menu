@@ -22,7 +22,7 @@ export const Variants = () => {
             <div className={'details-list-positions-wrapper'}>
                 {variants.map((variant: Variant) => (
                     <MenuItemDetailsPosition name={getTranslation(variant.name)}
-                                             price={`${formatPrice(variant.price + menuItem?.price)} zł`}
+                                             price={`${formatPrice(variant.price + (menuItem?.promoPrice ?? menuItem?.price))} zł`}
                                              key={variant.id}
                     />
                 ))}
