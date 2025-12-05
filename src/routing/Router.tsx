@@ -8,9 +8,11 @@ import {executePostScanActions} from "../slices/postScanSlice.ts";
 import {PrivateRoutes} from "./PrivateRoutes.tsx";
 import {RestaurantClosed} from "../app/menu/restaurant-closed/RestaurantClosed.tsx";
 import {InvalidToken} from "../app/menu/invalid-token/InvalidToken.tsx";
+import {useTranslation} from "react-i18next";
 
 export const Router = () => {
     const dispatch = useAppDispatch();
+    const {t} = useTranslation();
 
     useEffect(() => {
         dispatch(executePostScanActions());
@@ -23,11 +25,14 @@ export const Router = () => {
         }}>
             <Routes>
                 <Route path='/' element={<RedirectTo module={'menu'}/>}/>
-                <Route path='/invalid-token' element={<InvalidToken/>}/>
+                <Route path='/invalid-token' element={<InvalidToken paragraph={t('qrCodeInvalid')}/>}/>
+                <Route path='/unauthorized' element={<InvalidToken paragraph={t('rescanQrCode')}/>}/>
                 <Route path='/restaurant-closed/:token' element={<RestaurantClosed/>}/>
-                <Route path='/menu' element={<ViewsController/>}/>
-                <Route element={<PrivateRoutes/>}>
+                <Route element={<PrivateRoutes authPath={'app'}/>}>
                     <Route path='/menu/:preview/:message/:theme/:bannerIconVisible' element={<ViewsController/>}/>
+                </Route>
+                <Route element={<PrivateRoutes authPath={'menu'}/>}>
+                    <Route path='/menu' element={<ViewsController/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
