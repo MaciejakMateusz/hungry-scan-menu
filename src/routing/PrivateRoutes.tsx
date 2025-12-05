@@ -4,7 +4,11 @@ import {apiHost} from "../apiData";
 import {LoadingSpinner} from "../app/icons/LoadingSpinner";
 import {getLanguage} from "../locales/langUtils";
 
-export const PrivateRoutes = () => {
+type PrivateRoutesProps = {
+    authPath: string;
+}
+
+export const PrivateRoutes = ({authPath}: PrivateRoutesProps) => {
     const location = useLocation();
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [redirectUrl, setRedirectUrl] = useState(null);
@@ -15,7 +19,7 @@ export const PrivateRoutes = () => {
         const authorizeRequest = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`${apiHost}/api/auth/app`, {
+                const response = await fetch(`${apiHost}/api/auth/${authPath}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -32,7 +36,7 @@ export const PrivateRoutes = () => {
             }
         }
         authorizeRequest();
-    }, [location.pathname]);
+    }, [authPath, location.pathname]);
 
     const handleResponse = async (response: any) => {
         if (response.ok) {
@@ -51,7 +55,7 @@ export const PrivateRoutes = () => {
     } else if (isAuthorized) {
         return (<Outlet/>);
     } else if (serverDown) {
-        return (<Navigate to={"/server-down"}/>);
+        return (<Navigate to={'/server-down'}/>);
     }
-    return (<Navigate to={"/sign-in"}/>);
+    return (<Navigate to={authPath === 'app' ? '/invalid-token' : '/unauthorized'}/>);
 };
