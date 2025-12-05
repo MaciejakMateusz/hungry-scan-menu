@@ -1,7 +1,11 @@
 import {BrandLogo} from "../../icons/BrandLogo.tsx";
 import {useTranslation} from "react-i18next";
 
-export const InvalidToken = () => {
+type InvalidTokenProps = {
+    paragraph: string;
+}
+
+export const InvalidToken = ({paragraph}: InvalidTokenProps) => {
     const {t} = useTranslation();
 
     return (
@@ -12,7 +16,7 @@ export const InvalidToken = () => {
                     {t('weAreSorry')}
                 </div>
                 <div className={'pessimistic-path-paragraph'}>
-                    {t('qrCodeInvalid')}
+                    {paragraph}
                 </div>
             </div>
         </div>
