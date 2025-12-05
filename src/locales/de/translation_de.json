@@ -7,8 +7,20 @@
   "additions": "Zusätze",
   "optional": "optional",
   "search": "Suche",
-  "noPositions": "Keine Positionen zum Anzeigen",
-  "noCategories": "Keine Kategorien zum Anzeigen",
+  "noPositions": "Keine Positionen anzuzeigen",
+  "noCategories": "Keine Kategorien anzuzeigen",
   "proceedToMenu": "Zum Menü fortfahren",
-  "canContain": "Kann enthalten:"
+  "canContain": "Kann enthalten:",
+  "weAreSorry": "Es tut uns leid...",
+  "weAreClosed": "Wir haben geschlossen! Kommen Sie während dieser Öffnungszeiten zurück:",
+  "qrCodeInvalid": "Der gescannte QR-Code ist ungültig oder inaktiv.",
+  "rescanQrCode": "Benutzer nicht erkannt, QR-Code erneut scannen.",
+  "monday": "Montag",
+  "tuesday": "Dienstag",
+  "wednesday": "Mittwoch",
+  "thursday": "Donnerstag",
+  "friday": "Freitag",
+  "saturday": "Samstag",
+  "sunday": "Sonntag",
+  "closed": "Geschlossen"
 }

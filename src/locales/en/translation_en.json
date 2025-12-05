@@ -14,6 +14,7 @@
   "weAreSorry": "We are sorry...",
   "weAreClosed": "We are closed! Come back in this opening hours:",
   "qrCodeInvalid": "The scanned QR code is invalid or inactive.",
+  "rescanQrCode": "Unrecognized user, scan QR code again.",
   "monday": "Monday",
   "tuesday": "Tuesday",
   "wednesday": "Wednesday",
