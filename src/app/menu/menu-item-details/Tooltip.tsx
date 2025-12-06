@@ -10,7 +10,7 @@ type TooltipType = {
 export const Tooltip = ({children, content, appendTo}: TooltipType) => {
     return (
         <Tippy content={content}
-               placement={"top"}
+               placement={"auto"}
                delay={0}
                duration={0}
                className={'tooltip'}
