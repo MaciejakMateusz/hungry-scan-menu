@@ -22,5 +22,9 @@ export const ViewsController = () => {
         }
     }, [dispatch, menuItem, menuItems, preview]);
 
+    useEffect(() => {
+        window.parent.postMessage({type: 'PREVIEW_READY', source: 'menu-preview'}, '*');
+    }, []);
+
     return menuItem ? <MenuItemDetails/> : <Menu/>;
 };
