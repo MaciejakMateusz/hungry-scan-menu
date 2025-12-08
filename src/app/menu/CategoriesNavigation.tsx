@@ -8,7 +8,9 @@ import {
     setFilterActive,
     setFilteredItems,
     setFilterExpanded,
-    setFilterValue
+    setFilterValue,
+    setRestaurantDefaultLanguage,
+    setSupportedLanguages
 } from "../../slices/mainSlice.ts";
 import {getTranslation} from "../../locales/langUtils";
 import {FilteringForm} from "./FilteringForm";
@@ -38,6 +40,8 @@ export const CategoriesNavigation = () => {
         const result = await dispatch(getMenu());
         if (getMenu.fulfilled.match(result)) {
             dispatch(setCategory(result.payload.categories.length > 0 ? result.payload.categories[0] : null));
+            dispatch(setSupportedLanguages(result.payload.restaurant.supportedLanguages));
+            dispatch(setRestaurantDefaultLanguage(result.payload.restaurant.language));
             i18n.changeLanguage(result.payload.restaurant.language.toLowerCase());
         }
     }, [dispatch]);
