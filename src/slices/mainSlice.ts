@@ -160,6 +160,8 @@ export const mainSlice = createSlice(
         initialState: {
             category: null,
             menuItem: null,
+            supportedLanguages: [],
+            restaurantDefaultLanguage: 'PL',
             filterActive: false,
             filterValue: '',
             filteredItems: null,
@@ -175,6 +177,12 @@ export const mainSlice = createSlice(
             },
             setMenuItem: (state, action) => {
                 state.menuItem = action.payload;
+            },
+            setSupportedLanguages: (state, action) => {
+                state.supportedLanguages = action.payload;
+            },
+            setRestaurantDefaultLanguage: (state, action) => {
+                state.restaurantDefaultLanguage = action.payload;
             },
             setFilterActive: (state, action) => {
                 state.filterActive = action.payload;
@@ -202,6 +210,8 @@ export const {setIsLoading} = getMenuSlice.actions;
 export const {
     setCategory,
     setMenuItem,
+    setSupportedLanguages,
+    setRestaurantDefaultLanguage,
     setFilterActive,
     setFilterValue,
     setFilteredItems,
