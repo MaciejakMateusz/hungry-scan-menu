@@ -12,7 +12,7 @@ export const WelcomeTextContainer = () => {
 
     return (
         <div className={'welcome-text-container'}>
-            <span>{message ? message : getTranslation(menu.message)}</span>
+            <span className={'welcome-text'}>{message ? message : getTranslation(menu.message)}</span>
         </div>
     );
 }
