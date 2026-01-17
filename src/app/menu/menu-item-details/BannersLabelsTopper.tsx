@@ -18,7 +18,10 @@ export const BannersLabelsTopper = () => {
         <div className={'details-header'}>
             <div className={'banner-wrapper-detail'}>
                 {banners?.map((banner: BannerType) => (
-                    <Banner key={banner.id} name={t(banner.id)} iconPath={`/theme/icons/${banner.id}-small.svg`}/>
+                    <Banner key={banner.id}
+                            name={t(banner.id)}
+                            iconPath={`/theme/icons/${banner.id}-small.svg`}
+                            bigFont={true}/>
                 ))}
             </div>
             <Labels/>
