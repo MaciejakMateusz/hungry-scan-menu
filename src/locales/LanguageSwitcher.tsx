@@ -59,7 +59,6 @@ export const LanguageSwitcher = () => {
                     <span className={'lng-display'}>
                         <ReactSVG src={`/theme/icons/flags/${formatToLowercase(activeLng)}-small.svg`} className={'flag-icon'}/>
                     </span>
-                    <ReactSVG src={'/theme/icons/chevron-down.svg'}/>
                 </span>
                 </div>
             </div>
