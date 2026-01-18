@@ -1,10 +1,13 @@
 /*VARS*/
 :root {
+    --Text-Main: #222;
+
     --Basic-100: #FFFFFF;
     --Basic-200: #FCFCFC;
     --Basic-300: #FAFAFA;
     --Basic-900: #0C0C0C;
 
+    --Grey-Main: #EDEFF3;
     --Grey-100: #EDEDED;
     --Grey-200: #D9D9D9;
     --Grey-300: #CBCBCB;
@@ -166,6 +169,7 @@ input[type="password"]:active {
 }
 
 .flag-icon {
+    border-radius: 5px;
     box-shadow: 0 11px 9px 0 rgba(99, 99, 99, 0.00),
     0 7px 8px 0 rgba(99, 99, 99, 0.01),
     0 4px 7px 0 rgba(99, 99, 99, 0.05),
@@ -219,8 +223,9 @@ input[type="password"]:active {
     overflow-x: scroll;
     overflow-y: hidden;
     display: flex;
-    gap: 10px;
-    padding-bottom: 30px;
+    align-items: center;
+    gap: 5px;
+    padding-bottom: 20px;
     padding-right: 15px;
     user-select: none;
 }
@@ -229,11 +234,13 @@ input[type="password"]:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 12px;
+    height: 32px;
+    padding: 0 12px;
     border-radius: 100px;
+    border: 1px solid var(--Grey-Main);
     background: var(--Basic-100);
     font-size: 14px;
-    color: var(--Grey-700);
+    color: var(--Text-Main);
     text-wrap: nowrap;
     cursor: pointer;
 }
@@ -241,6 +248,7 @@ input[type="password"]:active {
 .nav-category.active {
     background: var(--Default-Theme);
     color: var(--Basic-200);
+    border: 0;
 }
 
 .menu-items-wrapper {
@@ -261,23 +269,31 @@ input[type="password"]:active {
     position: absolute;
     top: -9px;
     display: flex;
-    gap: 4px;
+    gap: 2px;
 }
 
 .banner-container {
     display: flex;
-    padding: 3px 9px 3px 7px;
+    padding: 3px 10px 3px 10px;
     justify-content: center;
     align-items: center;
-    border-radius: 100px;
+    border-radius: 7px;
     background: var(--Basic-900);
     color: var(--Basic-200);
-    font-size: 10px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.banner-container.big-font {
+    font-size: 13px;
+}
+
+.banner-container.with-icon {
+    padding: 3px 10px 3px 8px;
 }
 
 .banner-icon {
-    margin-right: 3px;
+    margin-right: 5px;
 }
 
 .menu-item-grid {
@@ -373,7 +389,7 @@ input[type="password"]:active {
     font-size: 14px;
     left: 0;
     bottom: 0;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--Basic-900);
 }
 
@@ -406,10 +422,10 @@ input[type="password"]:active {
     background: var(--Basic-100);
     border: 0;
     border-radius: 100px;
-    width: 38px;
-    min-width: 38px;
-    height: 38px;
-    min-height: 38px;
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    min-height: 32px;
     cursor: pointer;
 }
 
@@ -421,13 +437,12 @@ input[type="password"]:active {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 38px;
-    height: 38px;
-    border: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--Grey-Main);
     border-radius: 100px;
     background: var(--Basic-100);
     margin-left: 15px;
-    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.10);
     transition: width 0.5s ease;
 }
 
@@ -476,7 +491,7 @@ input[type="password"]:active {
 }
 
 .search-button-input {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     color: var(--Basic-900);
     width: 140px;
@@ -656,7 +671,6 @@ input[type="password"]:active {
 
 .details-price-label {
     display: inline-flex;
-    padding: 11px 0;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -664,7 +678,8 @@ input[type="password"]:active {
     background: var(--Default-Theme);
     position: absolute;
     bottom: 20px;
-    width: 90%;
+    width: 91%;
+    padding: 10px 0;
 }
 
 .details-price-text {
@@ -804,7 +819,7 @@ input[type="password"]:active {
     height: 48px;
     border-radius: 50%;
     display: inline-block;
-    border-top: 3px solid #222;
+    border-top: 3px solid var(--Text-Main);
     border-right: 3px solid transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
