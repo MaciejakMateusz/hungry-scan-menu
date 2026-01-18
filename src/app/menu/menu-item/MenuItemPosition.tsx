@@ -18,10 +18,14 @@ export const MenuItemPosition = ({menuItem}: MenuItemPositionType) => {
     const banners = menuItem.banners?.filter(banner => banner.id !== 'promo');
 
     return (
-        <div className={'menu-item-container'} onClick={() => dispatch(setMenuItem(menuItem))}>
+        <div className={'menu-item-container'}
+             onClick={() => dispatch(setMenuItem(menuItem))}>
             <div className={'banner-wrapper'}>
                 {banners?.map(banner => (
-                    <Banner key={banner.id} name={t(banner.id)} iconPath={`/theme/icons/${banner.id}-small.svg`}/>
+                    <Banner key={banner.id}
+                            name={t(banner.id)}
+                            iconPath={`/theme/icons/${banner.id}-small.svg`}
+                            bigFont={false}/>
                 ))}
             </div>
             <div className={`menu-item-grid ${!hasImage ? 'no-photo' : ''}`}>
