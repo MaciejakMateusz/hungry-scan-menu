@@ -8,5 +8,8 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
+  },
+  preview: {
+    allowedHosts: ['hungry-scan-menu-production.up.railway.app']
   }
 })
