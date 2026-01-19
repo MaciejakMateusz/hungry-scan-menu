@@ -55,7 +55,7 @@ export const PrivateRoutes = ({authPath}: PrivateRoutesProps) => {
     } else if (isAuthorized) {
         return (<Outlet/>);
     } else if (serverDown) {
-        return (<Navigate to={'/server-down'}/>);
+        return (<Navigate to={'/unauthorized'}/>);
     }
     return (<Navigate to={authPath === 'app' ? '/invalid-token' : '/unauthorized'}/>);
 };
