@@ -22,7 +22,6 @@ export const PrivateRoutes = ({authPath}: PrivateRoutesProps) => {
                 const response = await fetch(`${apiHost}/api/auth/${authPath}`, {
                     method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json',
                         'Accept-Language': getLanguage()
                     },
                     credentials: 'include'
