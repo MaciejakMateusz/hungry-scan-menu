@@ -10,6 +10,6 @@ export default defineConfig({
     sourcemap: true,
   },
   preview: {
-    allowedHosts: ['hungry-scan-menu-production.up.railway.app']
+    allowedHosts: ['www.restaurant.hungryscan.pl']
   }
 })
