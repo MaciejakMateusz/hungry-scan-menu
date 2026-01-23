@@ -32,6 +32,7 @@ export const CategoriesNavigation = () => {
     const {isLoading, menu} = useSelector<any, any>((state: RootState) => state.main.getMenu);
     const {theme} = useParams();
     const navRef = useRef<HTMLDivElement | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const isDown = useRef(false);
     const startX = useRef(0);
     const scrollLeft = useRef(0);
@@ -85,6 +86,14 @@ export const CategoriesNavigation = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (filterExpanded) {
+            setTimeout(() => {
+                inputRef.current?.focus();
+            }, 0);
+        }
+    }, [filterExpanded]);
+
     const handleSearchSubmit = async (e: any) => {
         e.preventDefault();
         dispatch(setFilterValue(e.target.value));
@@ -130,7 +139,7 @@ export const CategoriesNavigation = () => {
                     <SearchIcon/>
                 </button>
                 <div className={`search-form-container ${filterExpanded ? 'visible' : 'hidden'}`}>
-                    <FilteringForm value={filterValue} searchSubmit={handleSearchSubmit}/>
+                    <FilteringForm value={filterValue} searchSubmit={handleSearchSubmit} inputRef={inputRef}/>
                     {filterValue !== '' &&
                         <span className={'clear-filter-x'} onClick={() => dispatch(setFilterValue(''))}>x</span>}
                 </div>
