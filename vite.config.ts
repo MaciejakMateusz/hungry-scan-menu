@@ -10,6 +10,6 @@ export default defineConfig({
     sourcemap: true,
   },
   preview: {
-    allowedHosts: ['www.restaurant.hungryscan.pl']
+    allowedHosts: ['www.restaurant.hungryscan.pl', 'restaurant.hungryscan.pl']
   }
 })
