@@ -8,8 +8,10 @@ import {MenuItemDetailsPosition} from "./MenuItemDetailsPosition.tsx";
 export const Additions = () => {
     const {t} = useTranslation();
     const {menuItem} = useSelector<any, any>(state => state.main.view);
+    const filteredAdditions = menuItem?.additionalIngredients
+        .filter((addition: Addition) => addition.available);
 
-    if (menuItem?.additionalIngredients.length === 0) {
+    if (filteredAdditions === 0) {
         return null;
     }
 
@@ -20,9 +22,7 @@ export const Additions = () => {
                 <span className={'optional-text'}> ({t('optional')}):</span>
             </div>
             <div className={'details-list-positions-wrapper'}>
-                {menuItem.additionalIngredients
-                    .filter((addition: Addition) => addition.available)
-                    .map((addition: Addition) => (
+                {filteredAdditions.map((addition: Addition) => (
                     <MenuItemDetailsPosition name={getTranslation(addition.name)}
                                              price={`+${formatPrice(addition.price)} zł`}
                                              key={addition.id}
