@@ -15,7 +15,6 @@ import {
 import {getTranslation} from "../../locales/langUtils";
 import {FilteringForm} from "./FilteringForm";
 import {useTranslation} from "react-i18next";
-import {LoadingSpinner} from "../icons/LoadingSpinner.js";
 import type {RootState} from "../../store/store.ts";
 import type {Category} from "../../interfaces/Category.ts";
 import {useAppDispatch} from "../../hooks/hooks.ts";
@@ -28,8 +27,7 @@ export const CategoriesNavigation = () => {
     const {categories} = useSelector((state: RootState) => state.main.getMenu);
     const chosenCategory: any = useSelector((state: RootState) => state.main.view.category);
     const {filterExpanded, filterValue} = useSelector((state: RootState) => state.main.view);
-    const {isPending} = useSelector((state: RootState) => state.main.filter);
-    const {isLoading, menu} = useSelector<any, any>((state: RootState) => state.main.getMenu);
+    const {menu} = useSelector<any, any>((state: RootState) => state.main.getMenu);
     const {theme} = useParams();
     const navRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -144,7 +142,6 @@ export const CategoriesNavigation = () => {
                         <span className={'clear-filter-x'} onClick={() => dispatch(setFilterValue(''))}>x</span>}
                 </div>
             </div>
-            {(isLoading || isPending) && <LoadingSpinner/>}
             {renderCategoriesButtons()}
         </div>
     );
