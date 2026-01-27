@@ -11,7 +11,7 @@ export const Additions = () => {
     const filteredAdditions = menuItem?.additionalIngredients
         .filter((addition: Addition) => addition.available);
 
-    if (filteredAdditions === 0) {
+    if (filteredAdditions.length === 0) {
         return null;
     }
 
