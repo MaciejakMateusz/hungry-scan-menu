@@ -11,7 +11,7 @@ export const executePostScanActions = createAsyncThunk(
             const restaurantToken = getCookie('restaurantToken');
             footprint = restaurantToken + uuid
         }
-        const response = await fetch(`${apiHost}/api/users/post-scan`, {
+        const response = await fetch(`${apiHost}/api/qr/post-scan`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
