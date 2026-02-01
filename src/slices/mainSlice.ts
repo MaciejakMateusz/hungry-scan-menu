@@ -162,6 +162,7 @@ export const mainSlice = createSlice(
             menuItem: null,
             supportedLanguages: [],
             restaurantDefaultLanguage: 'PL',
+            restaurantToken: '',
             filterActive: false,
             filterValue: '',
             filteredItems: null,
@@ -183,6 +184,9 @@ export const mainSlice = createSlice(
             },
             setRestaurantDefaultLanguage: (state, action) => {
                 state.restaurantDefaultLanguage = action.payload;
+            },
+            setRestaurantToken: (state, action) => {
+                state.restaurantToken = action.payload;
             },
             setFilterActive: (state, action) => {
                 state.filterActive = action.payload;
@@ -212,6 +216,7 @@ export const {
     setMenuItem,
     setSupportedLanguages,
     setRestaurantDefaultLanguage,
+    setRestaurantToken,
     setFilterActive,
     setFilterValue,
     setFilteredItems,
