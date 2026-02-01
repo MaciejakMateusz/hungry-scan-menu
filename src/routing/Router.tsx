@@ -9,14 +9,17 @@ import {PrivateRoutes} from "./PrivateRoutes.tsx";
 import {RestaurantClosed} from "../app/menu/restaurant-closed/RestaurantClosed.tsx";
 import {InvalidToken} from "../app/menu/invalid-token/InvalidToken.tsx";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
+import type {RootState} from "../store/store.ts";
 
 export const Router = () => {
     const dispatch = useAppDispatch();
     const {t} = useTranslation();
+    const {restaurantToken} = useSelector((state: RootState) => state.main.view);
 
     useEffect(() => {
-        dispatch(executePostScanActions());
-    }, [dispatch]);
+        if (restaurantToken !== '') dispatch(executePostScanActions(restaurantToken));
+    }, [dispatch, restaurantToken]);
 
     return (
         <BrowserRouter future={{
