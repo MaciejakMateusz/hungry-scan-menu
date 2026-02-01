@@ -1,23 +1,18 @@
 import {combineReducers, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {apiHost} from "../apiData";
-import {getCookie, uuidV4} from "../utils";
+import {getCookie, setCookie, uuidV4} from "../utils";
 
 export const executePostScanActions = createAsyncThunk(
     'postScan/execute',
-    async (_, {rejectWithValue}) => {
-        let footprint = getCookie('footprint');
-        if(!footprint) {
-            const uuid = uuidV4();
-            const restaurantToken = getCookie('restaurantToken');
-            footprint = restaurantToken + uuid
-        }
+    async (restaurantToken: string, {rejectWithValue}) => {
+        const visitorId = setVisitorIdCookie(restaurantToken);
         const response = await fetch(`${apiHost}/api/qr/post-scan`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             credentials: 'include',
-            body: footprint
+            body: visitorId
         });
 
         if (!response.ok) {
@@ -28,6 +23,18 @@ export const executePostScanActions = createAsyncThunk(
         return await response.json();
     }
 );
+
+const setVisitorIdCookie = (restaurantToken: string): string => {
+    let visitorId = getCookie('visitorId');
+    if (!visitorId) {
+        const uuid = uuidV4();
+        visitorId = restaurantToken + '_' + uuid;
+        const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
+        const isSecure = import.meta.env.VITE_APP_IS_PRODUCTION === 'true';
+        setCookie('visitorId', visitorId, {secure: isSecure, maxAge: ONE_YEAR_SECONDS})
+    }
+    return visitorId;
+}
 
 export const getOperatingHours = createAsyncThunk(
     'getOperatingHours/getOperatingHours',
@@ -45,7 +52,9 @@ export const getOperatingHours = createAsyncThunk(
             return rejectWithValue(errorData);
         }
 
-        return await response.json().catch(() => {});
+        return await response.json().catch((err) => {
+            console.log(err.message);
+        });
     }
 );
 
