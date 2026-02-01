@@ -10,6 +10,7 @@ import {
     setFilterExpanded,
     setFilterValue,
     setRestaurantDefaultLanguage,
+    setRestaurantToken,
     setSupportedLanguages
 } from "../../slices/mainSlice.ts";
 import {getTranslation} from "../../locales/langUtils";
@@ -41,6 +42,7 @@ export const CategoriesNavigation = () => {
             dispatch(setCategory(result.payload.categories.length > 0 ? result.payload.categories[0] : null));
             dispatch(setSupportedLanguages(result.payload.restaurant.supportedLanguages));
             dispatch(setRestaurantDefaultLanguage(result.payload.restaurant.language));
+            dispatch(setRestaurantToken(result.payload.restaurant.token));
             i18n.changeLanguage(result.payload.restaurant.language.toLowerCase());
         }
     }, [dispatch]);
