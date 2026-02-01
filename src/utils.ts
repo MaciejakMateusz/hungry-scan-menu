@@ -1,13 +1,37 @@
+import type {CookieSettings} from "./interfaces/CookieSettings.ts";
+
 export const getCookie = (cookieName: string) => {
-    let cookie: string = "";
-    document.cookie.split(';').forEach(function (el) {
-        const [key, value] = el.split('=');
-        if(key === cookieName) {
-            cookie = value;
-            return;
-        }
-    })
-    return cookie;
+    const prefix = `${cookieName}=`;
+    const cookie = document.cookie
+        .split("; ")
+        .find(row => row.startsWith(prefix));
+
+    return cookie ? decodeURIComponent(cookie.slice(prefix.length)) : "";
+};
+
+export const setCookie = (
+    cookieName: string,
+    value: string,
+    settings: CookieSettings = {}
+) => {
+    const name = encodeURIComponent(cookieName);
+    const val = encodeURIComponent(value);
+
+    const parts: string[] = [`${name}=${val}`];
+
+    if (settings.maxAge != null) parts.push(`Max-Age=${Math.floor(settings.maxAge)}`);
+    if (settings.expires) parts.push(`Expires=${settings.expires.toUTCString()}`);
+
+    parts.push(`Path=${settings.path ?? "/"}`);
+    if (settings.domain) parts.push(`Domain=${settings.domain}`);
+
+    const sameSite = settings.sameSite ?? "Lax";
+    parts.push(`SameSite=${sameSite}`);
+
+    const secure = settings.secure ?? (sameSite === "None");
+    if (secure) parts.push("Secure");
+
+    document.cookie = parts.join("; ");
 };
 
 export const formatCurrency = (value: string) => {
