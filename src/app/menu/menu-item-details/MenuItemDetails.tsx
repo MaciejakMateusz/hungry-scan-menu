@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 export const MenuItemDetails = () => {
     const {menuItem} = useSelector<any, any>(state => state.main.view);
-    const hasImage = useImageExists(menuItem?.id);
+    const hasImage = useImageExists(menuItem);
 
     useEffect(() => {
         window.scrollTo({ top: 0});
