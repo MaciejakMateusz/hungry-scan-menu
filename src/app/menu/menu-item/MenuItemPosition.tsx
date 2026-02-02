@@ -14,7 +14,7 @@ type MenuItemPositionType = {
 export const MenuItemPosition = ({menuItem}: MenuItemPositionType) => {
     const {t} = useTranslation();
     const dispatch = useAppDispatch();
-    const hasImage = useImageExists(menuItem.id);
+    const hasImage = useImageExists(menuItem);
     const banners = menuItem.banners?.filter(banner => banner.id !== 'promo');
 
     return (
