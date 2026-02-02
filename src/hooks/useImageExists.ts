@@ -6,7 +6,7 @@ export const useImageExists = (id: number | string) => {
 
     useEffect(() => {
         let active = true;
-        const url = `${s3BucketUrl}/${id}.png?cb=${Date.now()}`;
+        const url = `${s3BucketUrl}/${id}.png`;
         const img = new Image();
 
         img.src = url;
