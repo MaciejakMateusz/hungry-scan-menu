@@ -253,6 +253,7 @@ input[type="password"]:active {
 
 .menu-items-wrapper {
     padding: 0 15px 15px 15px;
+    touch-action: pan-y;
 }
 
 .menu-item-container {
@@ -415,6 +416,7 @@ input[type="password"]:active {
 
 .no-positions-text {
     color: #7D7D7D;
+    height: 100%;
 }
 
 /* SEARCH BUTTON */
