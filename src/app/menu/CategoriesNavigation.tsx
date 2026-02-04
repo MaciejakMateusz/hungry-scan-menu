@@ -2,7 +2,6 @@ import {useCallback, useEffect, useLayoutEffect, useRef} from "react";
 import {SearchIcon} from "../icons/SearchIcon.js";
 import {useSelector} from "react-redux";
 import {
-    filter,
     getMenu,
     setCategory,
     setFilterActive,
@@ -28,7 +27,7 @@ export const CategoriesNavigation = () => {
     const {t} = useTranslation();
     const {categories} = useSelector((state: RootState) => state.main.getMenu);
     const chosenCategory: any = useSelector((state: RootState) => state.main.view.category);
-    const {filterExpanded, filterValue} = useSelector((state: RootState) => state.main.view);
+    const {filterExpanded, filterValue, restaurantDefaultLanguage} = useSelector((state: RootState) => state.main.view);
     const {menu} = useSelector<any, any>((state: RootState) => state.main.getMenu);
     const {theme} = useParams();
     const navRef = useRef<HTMLDivElement | null>(null);
@@ -41,6 +40,8 @@ export const CategoriesNavigation = () => {
         pillRefs.current[id] = el;
     };
     const scrollActiveIntoView = useScrollActiveIntoView({navRef, pillRefs, chosenCategory});
+    const getLanguageKey = () => (i18n.language?.toLowerCase() || restaurantDefaultLanguage.toLowerCase());
+    const norm = (s: string) => (s ?? "").toLowerCase();
 
     useLayoutEffect(() => {
         scrollActiveIntoView();
@@ -111,17 +112,29 @@ export const CategoriesNavigation = () => {
     };
 
     const executeFilter = async (value: string) => {
-        if ('' !== value) {
+        const filterValue = norm(value).trim();
+
+        if (filterValue !== "") {
             dispatch(setFilterActive(true));
-            const resultAction = await dispatch(filter({path: 'items', value: value}));
-            if (filter.fulfilled.match(resultAction)) {
-                dispatch(setFilteredItems(resultAction.payload));
-            }
+
+            const lang = getLanguageKey();
+
+            const allItems =
+                menu?.categories?.flatMap((cat: any) => cat?.menuItems ?? []) ?? [];
+
+            const filtered = allItems
+                .filter((item: any) => norm(item?.name?.[lang]).includes(filterValue))
+                .sort((a: any, b: any) =>
+                    norm(a?.name?.[lang]).localeCompare(norm(b?.name?.[lang]))
+                );
+
+            dispatch(setFilteredItems(filtered));
         } else {
             dispatch(setFilterActive(false));
             dispatch(setFilteredItems(null));
         }
     };
+
 
     const renderCategoriesButtons = () => {
         if (categories.length === 0) {
