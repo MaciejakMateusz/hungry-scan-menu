@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useRef} from "react";
+import {useCallback, useEffect, useLayoutEffect, useRef} from "react";
 import {SearchIcon} from "../icons/SearchIcon.js";
 import {useSelector} from "react-redux";
 import {
@@ -21,6 +21,7 @@ import type {Category} from "../../interfaces/Category.ts";
 import {useAppDispatch} from "../../hooks/hooks.ts";
 import {useParams} from "react-router-dom";
 import i18n from "../../i18n.ts";
+import {useScrollActiveIntoView} from "../../hooks/useScrollActiveIntoView.ts";
 
 export const CategoriesNavigation = () => {
     const dispatch = useAppDispatch();
@@ -35,6 +36,15 @@ export const CategoriesNavigation = () => {
     const isDown = useRef(false);
     const startX = useRef(0);
     const scrollLeft = useRef(0);
+    const pillRefs = useRef<Record<string, HTMLDivElement | null>>({});
+    const setPillRef = (id: string) => (el: HTMLDivElement | null) => {
+        pillRefs.current[id] = el;
+    };
+    const scrollActiveIntoView = useScrollActiveIntoView({navRef, pillRefs, chosenCategory});
+
+    useLayoutEffect(() => {
+        scrollActiveIntoView();
+    }, [scrollActiveIntoView, categories.length]);
 
     const fetchCategories = useCallback(async () => {
         const result = await dispatch(getMenu());
@@ -43,7 +53,7 @@ export const CategoriesNavigation = () => {
             dispatch(setSupportedLanguages(result.payload.restaurant.supportedLanguages));
             dispatch(setRestaurantDefaultLanguage(result.payload.restaurant.language));
             dispatch(setRestaurantToken(result.payload.restaurant.token));
-            i18n.changeLanguage(result.payload.restaurant.language.toLowerCase());
+            await i18n.changeLanguage(result.payload.restaurant.language.toLowerCase());
         }
     }, [dispatch]);
 
@@ -121,8 +131,10 @@ export const CategoriesNavigation = () => {
                 </div>
             );
         }
+
         return categories.map((category: Category) => (
             <div key={category.id}
+                 ref={setPillRef(String(category.id))}
                  className={`nav-category ${category?.id === chosenCategory?.id ? 'active' : ''}`}
                  style={category?.id === chosenCategory?.id ? {background: theme ? theme : menu?.theme} : {}}
                  onClick={() => dispatch(setCategory(category))}>
