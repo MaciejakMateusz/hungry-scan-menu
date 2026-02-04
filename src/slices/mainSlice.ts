@@ -1,61 +1,6 @@
 import {combineReducers, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {apiHost} from "../apiData";
 
-export const getVariants = createAsyncThunk(
-    'main/getVariants',
-    async (_, {getState, rejectWithValue}: any) => {
-        const state = getState().main.view;
-        if (!state.menuItem) {
-            return;
-        }
-        const response = await fetch(`${apiHost}/api/cms/variants/item`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: state.menuItem.id
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            return rejectWithValue(errorData);
-        }
-
-        return await response.json();
-    }
-);
-
-type VariantsSliceType = {
-    isLoading: boolean;
-    variants: []
-}
-
-const initialVariantsState: VariantsSliceType = {
-    isLoading: false,
-    variants: []
-}
-
-export const getVariantsSlice = createSlice(
-    {
-        name: 'getVariants',
-        initialState: initialVariantsState,
-        reducers: {},
-        extraReducers: (builder: any) => {
-            builder
-                .addCase(getVariants.pending, (state: VariantsSliceType) => {
-                    state.isLoading = true;
-                })
-                .addCase(getVariants.fulfilled, (state: VariantsSliceType, action: any) => {
-                    state.isLoading = false;
-                    state.variants = action.payload;
-                })
-                .addCase(getVariants.rejected, (state: VariantsSliceType) => {
-                    state.isLoading = false;
-                })
-        }
-    });
-
 export const filter = createAsyncThunk<void, any>(
     'filtering/filter',
     async (params: any, {rejectWithValue}) => {
@@ -209,8 +154,6 @@ export const mainSlice = createSlice(
         }
     });
 
-export const {setIsLoading} = getMenuSlice.actions;
-
 export const {
     setCategory,
     setMenuItem,
@@ -226,7 +169,6 @@ export const {
 const mainReducer = combineReducers({
     view: mainSlice.reducer,
     getMenu: getMenuSlice.reducer,
-    getVariants: getVariantsSlice.reducer,
     filter: filteringSlice.reducer
 });
 
