@@ -46,7 +46,7 @@ export const CategoriesNavigation = () => {
         scrollActiveIntoView();
     }, [scrollActiveIntoView, categories.length]);
 
-    const fetchCategories = useCallback(async () => {
+    const fetchMenu = useCallback(async () => {
         const result = await dispatch(getMenu());
         if (getMenu.fulfilled.match(result)) {
             dispatch(setCategory(result.payload.categories.length > 0 ? result.payload.categories[0] : null));
@@ -58,8 +58,8 @@ export const CategoriesNavigation = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        fetchCategories();
-    }, [fetchCategories]);
+        if (!menu) fetchMenu();
+    }, [fetchMenu, menu]);
 
     useEffect(() => {
         const slider = navRef.current;
